@@ -112,5 +112,13 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
                             }) { Icon(Icons.Default.DateRange, contentDescription = stringResource(id = R.string.desc_icon_calendar)) }
                         }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), singleLine = true
                     )
+                    ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }, modifier = Modifier.weight(1f)) {
+                        OutlinedTextField(value = experience, onValueChange = {}, readOnly = true, label = { Text(stringResource(id = R.string.experience_label), fontSize = 12.sp) }, trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) }, modifier = Modifier.fillMaxWidth().menuAnchor(), shape = RoundedCornerShape(16.dp), singleLine = true)
+                        ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                            experienceOptions.forEach { selectionOption -> DropdownMenuItem(text = { Text(selectionOption) }, onClick = { experience = selectionOption; expanded = false }) }
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(24.dp))
                     }
                 }
