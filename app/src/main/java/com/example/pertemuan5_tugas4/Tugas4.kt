@@ -33,4 +33,9 @@ import java.util.Calendar
 fun BiodataScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val calendar = Calendar.getInstance()
+
+    var namaDepan by remember { mutableStateOf("") }
+    var namaBelakang by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+
 }
