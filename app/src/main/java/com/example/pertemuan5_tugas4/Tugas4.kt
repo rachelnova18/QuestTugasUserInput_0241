@@ -50,5 +50,7 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
     var isUiUxSelected by remember { mutableStateOf(false) }
     var isWebSelected by remember { mutableStateOf(false) }
     var showPopup by remember { mutableStateOf(false) }
-
+    val isFormValid = namaDepan.isNotBlank() && namaBelakang.isNotBlank() &&
+            email.isNotBlank() && tglLahir.isNotBlank() && experience.isNotBlank() &&
+            (isAndroidSelected || isUiUxSelected || isWebSelected)
 }
