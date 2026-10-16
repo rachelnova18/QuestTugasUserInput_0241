@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">pertemuan5-tugas4</string>
+
+    <string name="form_title">Form Biodata</string>
+    <string name="form_subtitle">Silahkan isi biodata Anda dibawah ini !!!</string>
+    <string name="first_name">Nama Depan</string>
+    <string name="last_name">Nama Belakang</string>
+    <string name="email_label">Email</string>
+    <string name="dob_label">Tgl Lahir</string>
+    <string name="experience_label">Experience</string>
+    <string name="skill_title">Pilih Skill Anda :</string>
+
+    <!-- Checkbox Labels -->
+    <string name="skill_android">Android</string>
+    <string name="skill_uiux">UI/UX</string>
+    <string name="skill_web">Web</string>
+
+    <!-- Button -->
+    <string name="btn_proceed">Proceed</string>
+    <string name="exp_1">Kurang dari 1 Tahun</string>
+    <string name="exp_2">1 - 3 Tahun</string>
+    <string name="exp_3">Lebih dari 3 Tahun</string>
+
+    <!-- Content Descriptions (Accessibility) -->
+    <string name="desc_bg_image">Background Spider Laba Laba</string>
+    <string name="desc_icon_calendar">Ikon Kalender</string>
+    <string name="desc_icon_dropdown">Ikon Dropdown</string>
+
+    <string name="popup_title">Data Berhasil Disimpan!</string>
+    <string name="popup_message">Data biodata Anda valid dan telah tersimpan di sistem.</string>
 </resources>
