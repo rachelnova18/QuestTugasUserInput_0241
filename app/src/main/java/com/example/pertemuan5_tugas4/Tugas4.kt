@@ -70,6 +70,11 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
         containerColor = Color.White
     ) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
-
+            Image(
+                painter = painterResource(id = R.drawable.bg_spider),
+                contentDescription = stringResource(id = R.string.desc_bg_image),
+                modifier = Modifier.fillMaxWidth().fillMaxHeight(0.45f).align(Alignment.TopCenter),
+                contentScale = ContentScale.Crop
+            )
 
 }
