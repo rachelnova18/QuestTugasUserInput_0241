@@ -31,4 +31,6 @@ import java.util.Calendar
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun BiodataScreen(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
 }
