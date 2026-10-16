@@ -28,6 +28,7 @@ import kotlinx.coroutines.delay
 import java.util.Calendar
 
 @OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun BiodataScreen(modifier: Modifier = Modifier) {
 }
