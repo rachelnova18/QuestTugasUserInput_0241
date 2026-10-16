@@ -58,6 +58,13 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
             delay(5000L)
             showPopup = false
         }
+        AlertDialog(
+            onDismissRequest = { showPopup = false },
+            title = { Text(text = stringResource(id = R.string.popup_title), fontWeight = FontWeight.Bold) },
+            text = { Text(text = stringResource(id = R.string.popup_message)) },
+            confirmButton = {}
+        )
+    }
 
 
 }
