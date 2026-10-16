@@ -53,4 +53,11 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
     val isFormValid = namaDepan.isNotBlank() && namaBelakang.isNotBlank() &&
             email.isNotBlank() && tglLahir.isNotBlank() && experience.isNotBlank() &&
             (isAndroidSelected || isUiUxSelected || isWebSelected)
+    if (showPopup) {
+        LaunchedEffect(Unit) {
+            delay(5000L)
+            showPopup = false
+        }
+
+
 }
