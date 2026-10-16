@@ -116,6 +116,13 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
                         OutlinedTextField(value = experience, onValueChange = {}, readOnly = true, label = { Text(stringResource(id = R.string.experience_label), fontSize = 12.sp) }, trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) }, modifier = Modifier.fillMaxWidth().menuAnchor(), shape = RoundedCornerShape(16.dp), singleLine = true)
                         ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                             experienceOptions.forEach { selectionOption -> DropdownMenuItem(text = { Text(selectionOption) }, onClick = { experience = selectionOption; expanded = false }) }
+                            Text(text = stringResource(id = R.string.skill_title), fontWeight = FontWeight.Bold, modifier = Modifier.fillMaxWidth(), fontSize = 14.sp)
+                            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                                Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = isAndroidSelected, onCheckedChange = { isAndroidSelected = it }); Text(text = stringResource(id = R.string.skill_android), fontSize = 12.sp) }
+                                Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = isUiUxSelected, onCheckedChange = { isUiUxSelected = it }); Text(text = stringResource(id = R.string.skill_uiux), fontSize = 12.sp) }
+                                Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = isWebSelected, onCheckedChange = { isWebSelected = it }); Text(text = stringResource(id = R.string.skill_web), fontSize = 12.sp) }
+                            }
+                            Spacer(modifier = Modifier.weight(1f))
                         }
                     }
                 }
