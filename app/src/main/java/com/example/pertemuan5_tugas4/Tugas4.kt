@@ -102,4 +102,15 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
                     OutlinedTextField(value = email, onValueChange = { email = it }, label = { Text(stringResource(id = R.string.email_label), fontSize = 12.sp) }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), singleLine = true)
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    }
+
+                    OutlinedTextField(
+                        value = tglLahir, onValueChange = { }, readOnly = true, label = { Text(stringResource(id = R.string.dob_label), fontSize = 12.sp) },
+                        trailingIcon = {
+                            IconButton(onClick = {
+                                DatePickerDialog(context, { _, year, month, dayOfMonth -> tglLahir = "$dayOfMonth/${month + 1}/$year" }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+                            }) { Icon(Icons.Default.DateRange, contentDescription = stringResource(id = R.string.desc_icon_calendar)) }
+                        }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), singleLine = true
+                    )
+                    }
                 }
