@@ -81,5 +81,11 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .fillMaxHeight(0.72f)
                     .align(Alignment.BottomCenter)
-
+                    .padding(bottom = 24.dp)
+                    .shadow(elevation = 20.dp, shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp, bottomStart = 0.dp, bottomEnd = 0.dp))
+                    .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp, bottomStart = 0.dp, bottomEnd = 0.dp))
+                    .background(Color.White)
+                    .padding(horizontal = 24.dp, vertical = 32.dp)
+            ) {
+                Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 }
