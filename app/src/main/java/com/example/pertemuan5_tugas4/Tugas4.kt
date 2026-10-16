@@ -46,4 +46,9 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
         stringResource(id = R.string.exp_2),
         stringResource(id = R.string.exp_3)
     )
+    var isAndroidSelected by remember { mutableStateOf(false) }
+    var isUiUxSelected by remember { mutableStateOf(false) }
+    var isWebSelected by remember { mutableStateOf(false) }
+    var showPopup by remember { mutableStateOf(false) }
+
 }
