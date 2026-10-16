@@ -38,4 +38,12 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
     var namaBelakang by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
 
+    var tglLahir by remember { mutableStateOf("") }
+    var experience by remember { mutableStateOf("") }
+    var expanded by remember { mutableStateOf(false) }
+    val experienceOptions = listOf(
+        stringResource(id = R.string.exp_1),
+        stringResource(id = R.string.exp_2),
+        stringResource(id = R.string.exp_3)
+    )
 }
