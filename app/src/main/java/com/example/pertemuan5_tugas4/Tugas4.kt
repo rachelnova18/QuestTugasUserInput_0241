@@ -76,5 +76,10 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxWidth().fillMaxHeight(0.45f).align(Alignment.TopCenter),
                 contentScale = ContentScale.Crop
             )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.72f)
+                    .align(Alignment.BottomCenter)
 
 }
