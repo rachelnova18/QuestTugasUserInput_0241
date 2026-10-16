@@ -93,4 +93,10 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(text = stringResource(id = R.string.form_subtitle), color = colorResource(id = R.color.grey_subtitle), fontSize = 12.sp)
                     Spacer(modifier = Modifier.height(24.dp))
+
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        OutlinedTextField(value = namaDepan, onValueChange = { namaDepan = it }, label = { Text(stringResource(id = R.string.first_name), fontSize = 12.sp) }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), singleLine = true)
+                        OutlinedTextField(value = namaBelakang, onValueChange = { namaBelakang = it }, label = { Text(stringResource(id = R.string.last_name), fontSize = 12.sp) }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), singleLine = true)
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
                 }
