@@ -65,6 +65,11 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
             confirmButton = {}
         )
     }
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        containerColor = Color.White
+    ) { innerPadding ->
+        Box(modifier = Modifier.fillMaxSize()) {
 
 
 }
