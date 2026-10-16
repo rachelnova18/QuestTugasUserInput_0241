@@ -34,99 +34,251 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val calendar = Calendar.getInstance()
 
+    // State Management Input Form
     var namaDepan by remember { mutableStateOf("") }
     var namaBelakang by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-
     var tglLahir by remember { mutableStateOf("") }
     var experience by remember { mutableStateOf("") }
+
     var expanded by remember { mutableStateOf(false) }
     val experienceOptions = listOf(
         stringResource(id = R.string.exp_1),
         stringResource(id = R.string.exp_2),
         stringResource(id = R.string.exp_3)
     )
+
     var isAndroidSelected by remember { mutableStateOf(false) }
     var isUiUxSelected by remember { mutableStateOf(false) }
     var isWebSelected by remember { mutableStateOf(false) }
+
     var showPopup by remember { mutableStateOf(false) }
+
     val isFormValid = namaDepan.isNotBlank() && namaBelakang.isNotBlank() &&
             email.isNotBlank() && tglLahir.isNotBlank() && experience.isNotBlank() &&
             (isAndroidSelected || isUiUxSelected || isWebSelected)
+
     if (showPopup) {
         LaunchedEffect(Unit) {
             delay(5000L)
             showPopup = false
         }
+
         AlertDialog(
             onDismissRequest = { showPopup = false },
-            title = { Text(text = stringResource(id = R.string.popup_title), fontWeight = FontWeight.Bold) },
-            text = { Text(text = stringResource(id = R.string.popup_message)) },
+            title = {
+                Text(text = stringResource(id = R.string.popup_title), fontWeight = FontWeight.Bold)
+            },
+            text = {
+                Text(text = stringResource(id = R.string.popup_message))
+            },
             confirmButton = {}
         )
     }
+
     Scaffold(
         modifier = modifier.fillMaxSize(),
-        containerColor = Color.White
+        containerColor = Color.White // Background dasar putih agar shadow bawah jatuh di area terang
     ) { innerPadding ->
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            // 1. Layer Background Image
             Image(
                 painter = painterResource(id = R.drawable.bg_spider),
                 contentDescription = stringResource(id = R.string.desc_bg_image),
-                modifier = Modifier.fillMaxWidth().fillMaxHeight(0.45f).align(Alignment.TopCenter),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.45f)
+                    .align(Alignment.TopCenter),
                 contentScale = ContentScale.Crop
             )
+
+            // 2. Layer Form Putih (Menempel penuh kiri-kanan, bawah rata siku)
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight(0.72f)
                     .align(Alignment.BottomCenter)
+                    // Jarak terangkat dari dasar layar untuk mengekspos bayangan lurus
                     .padding(bottom = 24.dp)
-                    .shadow(elevation = 20.dp, shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp, bottomStart = 0.dp, bottomEnd = 0.dp))
+                    .shadow(
+                        elevation = 20.dp,
+                        // Hanya melengkung di atas. Bawah diset 0.dp (siku/rata)
+                        shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp, bottomStart = 0.dp, bottomEnd = 0.dp)
+                    )
                     .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp, bottomStart = 0.dp, bottomEnd = 0.dp))
                     .background(Color.White)
                     .padding(horizontal = 24.dp, vertical = 32.dp)
             ) {
-                Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-
-                    Text(text = stringResource(id = R.string.form_title), color = colorResource(id = R.color.purple_title), fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.form_title),
+                        color = colorResource(id = R.color.purple_title),
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = stringResource(id = R.string.form_subtitle), color = colorResource(id = R.color.grey_subtitle), fontSize = 12.sp)
+                    Text(
+                        text = stringResource(id = R.string.form_subtitle),
+                        color = colorResource(id = R.color.grey_subtitle),
+                        fontSize = 12.sp
+                    )
+
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                        OutlinedTextField(value = namaDepan, onValueChange = { namaDepan = it }, label = { Text(stringResource(id = R.string.first_name), fontSize = 12.sp) }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), singleLine = true)
-                        OutlinedTextField(value = namaBelakang, onValueChange = { namaBelakang = it }, label = { Text(stringResource(id = R.string.last_name), fontSize = 12.sp) }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), singleLine = true)
-                    }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    OutlinedTextField(value = email, onValueChange = { email = it }, label = { Text(stringResource(id = R.string.email_label), fontSize = 12.sp) }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), singleLine = true)
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        OutlinedTextField(
+                            value = namaDepan, onValueChange = { namaDepan = it },
+                            label = { Text(stringResource(id = R.string.first_name), fontSize = 12.sp) },
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(16.dp),
+                            singleLine = true
+                        )
+                        OutlinedTextField(
+                            value = namaBelakang, onValueChange = { namaBelakang = it },
+                            label = { Text(stringResource(id = R.string.last_name), fontSize = 12.sp) },
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(16.dp),
+                            singleLine = true
+                        )
                     }
 
+                    Spacer(modifier = Modifier.height(12.dp))
+
                     OutlinedTextField(
-                        value = tglLahir, onValueChange = { }, readOnly = true, label = { Text(stringResource(id = R.string.dob_label), fontSize = 12.sp) },
-                        trailingIcon = {
-                            IconButton(onClick = {
-                                DatePickerDialog(context, { _, year, month, dayOfMonth -> tglLahir = "$dayOfMonth/${month + 1}/$year" }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
-                            }) { Icon(Icons.Default.DateRange, contentDescription = stringResource(id = R.string.desc_icon_calendar)) }
-                        }, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), singleLine = true
+                        value = email, onValueChange = { email = it },
+                        label = { Text(stringResource(id = R.string.email_label), fontSize = 12.sp) },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        singleLine = true
                     )
-                    ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }, modifier = Modifier.weight(1f)) {
-                        OutlinedTextField(value = experience, onValueChange = {}, readOnly = true, label = { Text(stringResource(id = R.string.experience_label), fontSize = 12.sp) }, trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) }, modifier = Modifier.fillMaxWidth().menuAnchor(), shape = RoundedCornerShape(16.dp), singleLine = true)
-                        ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-                            experienceOptions.forEach { selectionOption -> DropdownMenuItem(text = { Text(selectionOption) }, onClick = { experience = selectionOption; expanded = false }) }
-                            Text(text = stringResource(id = R.string.skill_title), fontWeight = FontWeight.Bold, modifier = Modifier.fillMaxWidth(), fontSize = 14.sp)
-                            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                                Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = isAndroidSelected, onCheckedChange = { isAndroidSelected = it }); Text(text = stringResource(id = R.string.skill_android), fontSize = 12.sp) }
-                                Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = isUiUxSelected, onCheckedChange = { isUiUxSelected = it }); Text(text = stringResource(id = R.string.skill_uiux), fontSize = 12.sp) }
-                                Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = isWebSelected, onCheckedChange = { isWebSelected = it }); Text(text = stringResource(id = R.string.skill_web), fontSize = 12.sp) }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        OutlinedTextField(
+                            value = tglLahir,
+                            onValueChange = { },
+                            readOnly = true,
+                            label = { Text(stringResource(id = R.string.dob_label), fontSize = 12.sp) },
+                            trailingIcon = {
+                                IconButton(onClick = {
+                                    DatePickerDialog(
+                                        context,
+                                        { _, year, month, dayOfMonth ->
+                                            tglLahir = "$dayOfMonth/${month + 1}/$year"
+                                        },
+                                        calendar.get(Calendar.YEAR),
+                                        calendar.get(Calendar.MONTH),
+                                        calendar.get(Calendar.DAY_OF_MONTH)
+                                    ).show()
+                                }) {
+                                    Icon(Icons.Default.DateRange, contentDescription = stringResource(id = R.string.desc_icon_calendar))
+                                }
+                            },
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(16.dp),
+                            singleLine = true
+                        )
+
+                        ExposedDropdownMenuBox(
+                            expanded = expanded,
+                            onExpandedChange = { expanded = !expanded },
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            OutlinedTextField(
+                                value = experience,
+                                onValueChange = {},
+                                readOnly = true,
+                                label = { Text(stringResource(id = R.string.experience_label), fontSize = 12.sp) },
+                                trailingIcon = {
+                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .menuAnchor(),
+                                shape = RoundedCornerShape(16.dp),
+                                singleLine = true
+                            )
+
+                            ExposedDropdownMenu(
+                                expanded = expanded,
+                                onDismissRequest = { expanded = false }
+                            ) {
+                                experienceOptions.forEach { selectionOption ->
+                                    DropdownMenuItem(
+                                        text = { Text(selectionOption) },
+                                        onClick = {
+                                            experience = selectionOption
+                                            expanded = false
+                                        }
+                                    )
+                                }
                             }
-                            Spacer(modifier = Modifier.weight(1f))
                         }
                     }
-                }
-                Spacer(modifier = Modifier.height(24.dp))
-                Tombol Proceed dengan warna dinamis (Penutup)
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    Text(
+                        text = stringResource(id = R.string.skill_title),
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.fillMaxWidth(),
+                        fontSize = 14.sp
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Checkbox(checked = isAndroidSelected, onCheckedChange = { isAndroidSelected = it })
+                            Text(text = stringResource(id = R.string.skill_android), fontSize = 12.sp)
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Checkbox(checked = isUiUxSelected, onCheckedChange = { isUiUxSelected = it })
+                            Text(text = stringResource(id = R.string.skill_uiux), fontSize = 12.sp)
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Checkbox(checked = isWebSelected, onCheckedChange = { isWebSelected = it })
+                            Text(text = stringResource(id = R.string.skill_web), fontSize = 12.sp)
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Button(
+                        onClick = {
+                            showPopup = true
+                        },
+                        enabled = isFormValid,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = colorResource(id = R.color.purple_title),
+                            disabledContainerColor = colorResource(id = R.color.grey_button)
+                        ),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.btn_proceed),
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
                     }
                 }
+            }
+        }
+    }
+}
