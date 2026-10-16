@@ -127,5 +127,6 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
                     }
                 }
                 Spacer(modifier = Modifier.height(24.dp))
+                Tombol Proceed dengan warna dinamis (Penutup)
                     }
                 }
