@@ -88,4 +88,9 @@ fun BiodataScreen(modifier: Modifier = Modifier) {
                     .padding(horizontal = 24.dp, vertical = 32.dp)
             ) {
                 Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-}
+
+                    Text(text = stringResource(id = R.string.form_title), color = colorResource(id = R.color.purple_title), fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(text = stringResource(id = R.string.form_subtitle), color = colorResource(id = R.color.grey_subtitle), fontSize = 12.sp)
+                    Spacer(modifier = Modifier.height(24.dp))
+                }
